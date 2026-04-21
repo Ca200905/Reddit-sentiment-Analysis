@@ -1,0 +1,7 @@
+global:
+  scrape_interval: 15s
+
+scrape_configs:
+  - job_name: 'reddit_inference_worker'
+    static_configs:
+      - targets: ['inference_worker:8000'] # We will build this container later
