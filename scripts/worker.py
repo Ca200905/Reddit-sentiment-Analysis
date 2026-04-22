@@ -20,7 +20,7 @@ print(f"📦 Loading Production Transformer: {MODEL_NAME}...")
 sentiment_task = pipeline("sentiment-analysis", model=MODEL_NAME, tokenizer=MODEL_NAME, device=-1)
 
 # 3. CONFIG
-DB_CONFIG = {"host": "localhost", "database": "sentiment_db", "user": "mlops_user", "password": "mlops_password", "port": "5433"}
+DB_CONFIG = {"host": "localhost", "database": "sentiment_db", "user": "mlops_user", "password": "mlops_password", "port": "5432"}
 
 # 4. KAFKA SETUP
 consumer = KafkaConsumer('reddit_stream', bootstrap_servers=['localhost:9092'], value_deserializer=lambda x: json.loads(x.decode('utf-8')))
