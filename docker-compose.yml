@@ -39,7 +39,8 @@ services:
       - "9090:9090"
     volumes:
       - ./monitoring/prometheus.yml:/etc/prometheus/prometheus.yml
-
+    extra_hosts:
+    - "host.docker.internal:host-gateway"
   # Monitoring: Grafana
   grafana:
     image: grafana/grafana:latest
@@ -79,7 +80,7 @@ services:
       - POSTGRES_PASSWORD=mlops_password
       - POSTGRES_DB=sentiment_db
     ports:
-      - "5433:5432"
+      - "5432:5432"
     # This SQL block ensures the table exists as soon as the DB starts
     command: >
       postgres -c "archive_mode=off"
