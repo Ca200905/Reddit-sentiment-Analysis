@@ -1,0 +1,7 @@
+mlflow
+psycopg2-binary
+torch
+transformers
+pandas
+scikit-learn
+dvc
