@@ -1,16 +1,24 @@
 import requests
 import time
 
+def safe_request(url, headers):
+    """Helper function to handle network timeouts safely."""
+    try:
+        response = requests.get(url, headers=headers, timeout=10)
+        return response
+    except Exception as e:
+        print(f"📡 Network Error: {e}")
+        return None
+
 def fetch_comments(post_id):
-
     url = f"https://api.reddit.com/comments/{post_id}?limit=50"
-
     headers = {
         "User-Agent": "python:bigdata.project:v1.0 (by /u/temporary_user)"
     }
 
     try:
-        response = safe_request(url)
+        # Fixed: passing headers and using the now-defined safe_request
+        response = safe_request(url, headers)
 
         if response is None:
             return []
@@ -28,18 +36,16 @@ def fetch_comments(post_id):
         return []
 
     comments = []
-
     try:
+        # data[1] contains the actual comments tree in Reddit's JSON
         for comment in data[1]["data"]["children"]:
-
             if comment["kind"] != "t1":
                 continue
 
             d = comment["data"]
-
             body = d.get("body", "")
 
-            # skip low quality
+            # skip low quality or bot comments
             if len(body.split()) < 5:
                 continue
 
