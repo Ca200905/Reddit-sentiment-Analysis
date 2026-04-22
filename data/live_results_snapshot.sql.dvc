@@ -1,0 +1,5 @@
+outs:
+- md5: 2fbf2e83235b4838c9563c9729962224
+  size: 35725
+  hash: md5
+  path: live_results_snapshot.sql
