@@ -1,0 +1,24 @@
+# Machine Learning Models (These are tracked by DVC/MLflow)
+*.pth
+*.pkl
+mlruns/
+outputs/
+
+# Python environment & Cache
+__pycache__/
+*.py[cod]
+*$py.class
+.env
+.venv
+env/
+venv/
+bin/
+lib/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Data (Handled by DVC)
+data/raw_data.csv
+data/*.sql
